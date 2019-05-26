@@ -10,7 +10,7 @@ public class mainController : MonoBehaviour
 
     public GameObject DetectedPlanePrefab;
 
-    public GameObject AndyPlanePrefab;
+    public GameObject PlanePrefab;
 
     public GameObject AndyPointPrefab;
 
@@ -57,7 +57,7 @@ public class mainController : MonoBehaviour
                 }
                 else
                 {
-                    prefab = AndyPlanePrefab;
+                    prefab = PlanePrefab;
                 }
 
                 // Instantiate Andy model at the hit pose.
