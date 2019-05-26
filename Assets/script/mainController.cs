@@ -28,7 +28,7 @@ public class mainController : MonoBehaviour
             return;
         }
 
-        // Should not handle input if the player is pointing on UI.
+        // Should not handle input on UI.
         if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
         {
             return;
@@ -41,8 +41,6 @@ public class mainController : MonoBehaviour
 
         if (Frame.Raycast(touch.position.x, touch.position.y, raycastFilter, out hit))
         {
-            // Use hit pose and camera pose to check if hittest is from the
-            // back of the plane, if it is, no need to create the anchor.
             if ((hit.Trackable is DetectedPlane) &&
                 Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position,
                     hit.Pose.rotation * Vector3.up) < 0)
@@ -51,7 +49,7 @@ public class mainController : MonoBehaviour
             }
             else
             {
-                // Choose the Andy model for the Trackable that got hit.
+                // Choose model
                 GameObject prefab;
                 if (hit.Trackable is FeaturePoint)
                 {
@@ -63,31 +61,27 @@ public class mainController : MonoBehaviour
                 }
 
                 // Instantiate Andy model at the hit pose.
-                var andyObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
+                var TreeObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
 
                 // Compensate for the hitPose rotation facing away from the raycast (i.e.
                 // camera).
-                andyObject.transform.Rotate(0, k_ModelRotation, 0, Space.Self);
+                TreeObject.transform.Rotate(0, k_ModelRotation, 0, Space.Self);
 
                 // Create an anchor to allow ARCore to track the hitpoint as understanding of
                 // the physical world evolves.
                 var anchor = hit.Trackable.CreateAnchor(hit.Pose);
 
                 // Make Andy model a child of the anchor.
-                andyObject.transform.parent = anchor.transform;
+                TreeObject.transform.parent = anchor.transform;
             }
         }
     }
 
-    /// <summary>
-    /// Check and update the application lifecycle.
-    /// </summary>
     private void _UpdateApplicationLifecycle()
     {
-        // Exit the app when the 'back' button is pressed.
         if (Input.GetKey(KeyCode.Escape))
         {
-            Application.Quit();
+            _DoQuit();
         }
 
         // Only allow the screen to sleep when not tracking.
@@ -106,8 +100,7 @@ public class mainController : MonoBehaviour
             return;
         }
 
-        // Quit if ARCore was unable to connect and give Unity some time for the toast to
-        // appear.
+        // Permission and ARCore
         if (Session.Status == SessionStatus.ErrorPermissionNotGranted)
         {
             _ShowAndroidToastMessage("Camera permission is needed to run this application.");
@@ -123,18 +116,11 @@ public class mainController : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Actually quit the application.
-    /// </summary>
     private void _DoQuit()
     {
         Application.Quit();
     }
 
-    /// <summary>
-    /// Show an Android toast message.
-    /// </summary>
-    /// <param name="message">Message string to show in the toast.</param>
     private void _ShowAndroidToastMessage(string message)
     {
         AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");

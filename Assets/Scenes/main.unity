@@ -451,7 +451,7 @@ MonoBehaviour:
   FirstPersonCamera: {fileID: 1750838889}
   DetectedPlanePrefab: {fileID: 1654175882956584, guid: 6a35c744e5010405c847fad90282d2be,
     type: 3}
-  AndyPlanePrefab: {fileID: 1190091649889860, guid: 242a320930b81430ba610f94f9b760c8,
+  AndyPlanePrefab: {fileID: 7841197598074208445, guid: d5e01c16c5d0ecd409830455ffaa236e,
     type: 3}
   AndyPointPrefab: {fileID: 1190091649889860, guid: b27e8d7fe70df464188ea5dcf2af0bb3,
     type: 3}
