@@ -60,7 +60,7 @@ public class mainController : MonoBehaviour
                     prefab = PlanePrefab;
                 }
 
-                // Instantiate Andy model at the hit pose.
+                // Instantiate model at the hit pose.
                 var TreeObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
 
                 // Compensate for the hitPose rotation facing away from the raycast (i.e.
