@@ -4,7 +4,7 @@ using UnityEngine;
 using GoogleARCore;
 using UnityEngine.EventSystems;
 
-public class mainController : MonoBehaviour
+public class MainController : MonoBehaviour
 {
     public Camera FirstPersonCamera;
 
@@ -14,9 +14,21 @@ public class mainController : MonoBehaviour
 
     public GameObject AndyPointPrefab;
 
+    public GameObject ListModel;
+
+    public GameObject ButtonArea;
+
+    private ConnectRestApi connect;
+
     private const float k_ModelRotation = 180.0f;
 
     private bool m_IsQuitting = false;
+
+    public void Start()
+    {
+        ButtonArea.SetActive(true);
+        ListModel.SetActive(false);
+    }
 
     public void Update()
     {
@@ -139,4 +151,18 @@ public class mainController : MonoBehaviour
             }));
         }
     }
+
+    public void showList()
+    {
+        ButtonArea.SetActive(false);
+        ListModel.SetActive(true);
+    }
+
+    public void quitList()
+    {
+        ButtonArea.SetActive(true);
+        ListModel.SetActive(false);
+    }
+
+
 }
