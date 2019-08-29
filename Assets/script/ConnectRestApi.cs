@@ -23,8 +23,8 @@ public class ConnectRestApi : MonoBehaviour
             else
             {
                 if (www.isDone)
-                {
-                    response = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
+                { 
+                    response = www.downloadHandler.text;
                 }
             }
         }

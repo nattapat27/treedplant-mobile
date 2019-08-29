@@ -5,6 +5,7 @@ using GoogleARCore;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using System;
+using LitJson;
 
 public class MainController : MonoBehaviour
 {
@@ -159,9 +160,8 @@ public class MainController : MonoBehaviour
         ListModel.SetActive(true);
         Debug.Log(ConnectRestApi.getRespone());
         string response = ConnectRestApi.getRespone();
-        AssetAndTree[] assetAndTrees = JsonHelper.toAssetAndTree<AssetAndTree>(response);
-        //Debug.Log(JsonHelper.toAssetAndTree(response));
-        
+        JsonData assetAndTrees = JsonHelper.toJsonData(response);
+        Debug.Log(assetAndTrees["data"][0]["assetName"]);   
     }
 
     public void quitList()
