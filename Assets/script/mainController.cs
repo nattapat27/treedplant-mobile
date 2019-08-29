@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using GoogleARCore;
 using UnityEngine.EventSystems;
+using UnityEngine.Networking;
+using System;
 
 public class MainController : MonoBehaviour
 {
@@ -18,8 +20,6 @@ public class MainController : MonoBehaviour
 
     public GameObject ButtonArea;
 
-    private ConnectRestApi connect;
-
     private const float k_ModelRotation = 180.0f;
 
     private bool m_IsQuitting = false;
@@ -28,6 +28,7 @@ public class MainController : MonoBehaviour
     {
         ButtonArea.SetActive(true);
         ListModel.SetActive(false);
+        StartCoroutine(ConnectRestApi.sendGetMethod("/asset/getAllAsset/tree"));
     }
 
     public void Update()
@@ -156,6 +157,11 @@ public class MainController : MonoBehaviour
     {
         ButtonArea.SetActive(false);
         ListModel.SetActive(true);
+        Debug.Log(ConnectRestApi.getRespone());
+        string response = ConnectRestApi.getRespone();
+        AssetAndTree[] assetAndTrees = JsonHelper.toAssetAndTree<AssetAndTree>(response);
+        //Debug.Log(JsonHelper.toAssetAndTree(response));
+        
     }
 
     public void quitList()
@@ -163,6 +169,5 @@ public class MainController : MonoBehaviour
         ButtonArea.SetActive(true);
         ListModel.SetActive(false);
     }
-
 
 }

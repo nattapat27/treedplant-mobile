@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 217738576}
   - component: {fileID: 217738575}
   - component: {fileID: 217738574}
-  - component: {fileID: 217738577}
   m_Layer: 5
   m_Name: list button
   m_TagString: Untagged
@@ -241,18 +240,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217738572}
   m_CullTransparentMesh: 0
---- !u!114 &217738577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217738572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f26395b83fb3dc6498cd196f5285b1ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &355568495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1102,7 +1089,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.40000153, y: -1}
+  m_AnchoredPosition: {x: 0.3999939, y: -1}
   m_SizeDelta: {x: 706.3, y: 554.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1689226382
