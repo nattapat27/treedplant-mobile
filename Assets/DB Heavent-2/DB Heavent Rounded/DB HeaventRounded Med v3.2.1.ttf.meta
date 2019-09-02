@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 3b90ce1dae4be43b193d3dec72314443
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: DB HeaventRounded
+  fontNames:
+  - DB HeaventRounded
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 334a5dd52e3614929a7ce64a9b31249a, type: 3}
+  - {fileID: 12800000, guid: 06f98a8b8cb8446558a2c9066e03a224, type: 3}
+  - {fileID: 12800000, guid: 285833cd63a23459681bdb581f690265, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

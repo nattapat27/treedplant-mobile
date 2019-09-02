@@ -1,0 +1,32 @@
+fileFormatVersion: 2
+guid: a1ecf40a488a940ecb1fb3af8f813960
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: DB HeaventRounded
+  fontNames:
+  - DB HeaventRounded
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 40d688d271ca94a1795369cf746be586, type: 3}
+  - {fileID: 12800000, guid: 4f8337634382149f1b37633b91f7575a, type: 3}
+  - {fileID: 12800000, guid: 5fe6d8d4a935d4da7804246b38e2c2b4, type: 3}
+  - {fileID: 12800000, guid: 334a5dd52e3614929a7ce64a9b31249a, type: 3}
+  - {fileID: 12800000, guid: 06f98a8b8cb8446558a2c9066e03a224, type: 3}
+  - {fileID: 12800000, guid: 807bd29ca1f574084b2b672bcd627f40, type: 3}
+  - {fileID: 12800000, guid: 3b90ce1dae4be43b193d3dec72314443, type: 3}
+  - {fileID: 12800000, guid: 285833cd63a23459681bdb581f690265, type: 3}
+  - {fileID: 12800000, guid: 5a0172cef440b4240bcc37d356fff751, type: 3}
+  - {fileID: 12800000, guid: 6be1c48ffaee14e3b87c18424c24236d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

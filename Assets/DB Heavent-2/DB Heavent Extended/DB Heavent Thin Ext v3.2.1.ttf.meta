@@ -1,0 +1,35 @@
+fileFormatVersion: 2
+guid: 5c09227f7bf484a3b840ad3943298980
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: DB Heavent
+  fontNames:
+  - DB Heavent
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 52d00450e33ee47d6bbcd63e6bfd4395, type: 3}
+  - {fileID: 12800000, guid: 47234cb0aeec1421d97943aa7a2b208f, type: 3}
+  - {fileID: 12800000, guid: 2554d463e5e594eadae0a268c96d3733, type: 3}
+  - {fileID: 12800000, guid: 0008317462e604f8da8b28ddac76262e, type: 3}
+  - {fileID: 12800000, guid: 333e05c6e0fa74d3ca3bfe8357d92133, type: 3}
+  - {fileID: 12800000, guid: 2f83ea3761c074326b26e4036faa2326, type: 3}
+  - {fileID: 12800000, guid: 4f6278e7fc61342bc8de0b42b3cc1a74, type: 3}
+  - {fileID: 12800000, guid: 1f7a8749d94204681ae94c39f96258b4, type: 3}
+  - {fileID: 12800000, guid: 51474c6940eef43f6be707b830c50c2d, type: 3}
+  - {fileID: 12800000, guid: 44b256baf377541f1aaaeab4b7171132, type: 3}
+  - {fileID: 12800000, guid: 2ca4911b996b64247ae0900d19becf06, type: 3}
+  - {fileID: 12800000, guid: 554b566e0157b4de0b42bbd66c1a47f5, type: 3}
+  - {fileID: 12800000, guid: 5980259f727844059b0f8a86c591d108, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="294" height="42" viewBox="0 0 294 42">
+  <g id="Group_4" data-name="Group 4" transform="translate(-40.5 -325)">
+    <rect id="Rectangle_2" data-name="Rectangle 2" width="294" height="42" rx="21" transform="translate(40.5 325)" fill="#4267b2"/>
+    <g id="facebook" transform="translate(-59.421 337)">
+      <g id="Group_1" data-name="Group 1" transform="translate(146.218)">
+        <path id="Path_1" data-name="Path 1" d="M133.378,6.451V4.105a1.128,1.128,0,0,1,1.076-1.173h1.076V0h-2.151a3.382,3.382,0,0,0-3.227,3.519V6.451H128V9.383h2.151v9.383h3.227V9.383h2.151L136.6,6.451Z" transform="translate(-128)" fill="#fff"/>
+      </g>
+    </g>
+    <text id="เข้าสู่ระบบผ่าน_Facebook" data-name="เข้าสู่ระบบผ่าน Facebook" transform="translate(116.5 351)" fill="#fff" font-size="20" font-family="DBHeavent-Bold, DB Heavent" font-weight="700" letter-spacing="0.03em"><tspan x="0" y="0">เข้าสู่ระบบผ่าน </tspan><tspan y="0">Facebook</tspan></text>
+  </g>
+</svg>
