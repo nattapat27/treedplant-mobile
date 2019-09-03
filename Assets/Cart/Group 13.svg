@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="74" viewBox="0 0 25 74">
+  <g id="Group_13" data-name="Group 13" transform="translate(-60 -96)">
+    <rect id="Rectangle_23" data-name="Rectangle 23" width="25" height="25" transform="translate(60 96)" fill="#e5e5e5"/>
+    <text id="_" data-name="+" transform="translate(73 113)" fill="#a29f9f" font-size="20" font-family="DBHeavent-Med, DB Heavent" letter-spacing="0.02em"><tspan x="-4.199" y="0">+</tspan></text>
+    <rect id="Rectangle_24" data-name="Rectangle 24" width="25" height="25" transform="translate(60 120)" fill="#de415b"/>
+    <rect id="Rectangle_25" data-name="Rectangle 25" width="25" height="25" transform="translate(60 145)" fill="#e5e5e5"/>
+    <text id="_-" data-name="-" transform="translate(73 162)" fill="#a29f9f" font-size="20" font-family="DBHeavent-Med, DB Heavent" letter-spacing="0.02em"><tspan x="-3.24" y="0">-</tspan></text>
+    <text id="_2" data-name="2" transform="translate(73 137)" fill="#fff" font-size="20" font-family="DBHeavent-Med, DB Heavent" letter-spacing="0.02em"><tspan x="-3.801" y="0">2</tspan></text>
+  </g>
+</svg>
