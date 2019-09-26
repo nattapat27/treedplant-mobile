@@ -103,8 +103,6 @@ namespace GoogleARCore.Examples.ObjectManipulation
                     // Make Andy model a child of the manipulator.
                     andyObject.transform.parent = manipulator.transform;
 
-                    // Create an anchor to allow ARCore to track the hitpoint as understanding of
-                    // the physical world evolves.
                     var anchor = hit.Trackable.CreateAnchor(hit.Pose);
 
                     // Make manipulator a child of the anchor.

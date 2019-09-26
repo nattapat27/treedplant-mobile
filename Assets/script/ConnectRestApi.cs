@@ -13,11 +13,9 @@ public class ConnectRestApi : MonoBehaviour
 
         using (UnityWebRequest www = UnityWebRequest.Get(request))
         {
-            // www.chunkedTransfer = false;
             yield return www.SendWebRequest();
             if (www.isNetworkError || www.isHttpError)
             {
-                // Debug.Log("++++++++++++++");
                 Debug.Log(www.error);
             }
             else

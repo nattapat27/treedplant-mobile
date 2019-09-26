@@ -6,25 +6,17 @@ using UnityEngine.EventSystems;
 using UnityEngine.Networking;
 using System;
 using LitJson;
+using UnityEngine.UI;
 
-public class MainController : MonoBehaviour
+public class mainController : MonoBehaviour
 {
-    public Camera FirstPersonCamera;
-
-    public GameObject DetectedPlanePrefab;
-
-    public GameObject PlanePrefab;
-
-    public GameObject AndyPointPrefab;
-
-    public GameObject ListModel;
-
     public GameObject ButtonArea;
+    public GameObject ListModel;
+    public GameObject List;
 
-    private const float k_ModelRotation = 180.0f;
-
+    private ModelListButton prefab;
     private bool m_IsQuitting = false;
-
+    private bool status = false;
     public void Start()
     {
         ButtonArea.SetActive(true);
@@ -34,71 +26,20 @@ public class MainController : MonoBehaviour
 
     public void Update()
     {
+        if(!status && ConnectRestApi.getRespone()!= null)
+        {
+            status = true;
+        }
         _UpdateApplicationLifecycle();
-
-        Touch touch;
-        if (Input.touchCount < 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began)
-        {
-            return;
-        }
-
-        // Should not handle input on UI.
-        if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
-        {
-            return;
-        }
-
-        // Raycast against the location the player touched to search for planes.
-        TrackableHit hit;
-        TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon |
-            TrackableHitFlags.FeaturePointWithSurfaceNormal;
-
-        if (Frame.Raycast(touch.position.x, touch.position.y, raycastFilter, out hit))
-        {
-            if ((hit.Trackable is DetectedPlane) &&
-                Vector3.Dot(FirstPersonCamera.transform.position - hit.Pose.position,
-                    hit.Pose.rotation * Vector3.up) < 0)
-            {
-                Debug.Log("Hit at back of the current DetectedPlane");
-            }
-            else
-            {
-                // Choose model
-                GameObject prefab;
-                if (hit.Trackable is FeaturePoint)
-                {
-                    prefab = AndyPointPrefab;
-                }
-                else
-                {
-                    prefab = PlanePrefab;
-                }
-
-                // Instantiate model at the hit pose.
-                var TreeObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
-
-                // Compensate for the hitPose rotation facing away from the raycast (i.e.
-                // camera).
-                TreeObject.transform.Rotate(0, k_ModelRotation, 0, Space.Self);
-
-                // Create an anchor to allow ARCore to track the hitpoint as understanding of
-                // the physical world evolves.
-                var anchor = hit.Trackable.CreateAnchor(hit.Pose);
-
-                // Make Andy model a child of the anchor.
-                TreeObject.transform.parent = anchor.transform;
-            }
-        }
     }
 
     private void _UpdateApplicationLifecycle()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            _DoQuit();
+            Application.Quit();
         }
-
-        // Only allow the screen to sleep when not tracking.
+        
         if (Session.Status != SessionStatus.Tracking)
         {
             const int lostTrackingSleepTimeout = 15;
@@ -113,8 +54,7 @@ public class MainController : MonoBehaviour
         {
             return;
         }
-
-        // Permission and ARCore
+        
         if (Session.Status == SessionStatus.ErrorPermissionNotGranted)
         {
             _ShowAndroidToastMessage("Camera permission is needed to run this application.");
@@ -135,7 +75,7 @@ public class MainController : MonoBehaviour
         Application.Quit();
     }
 
-    private void _ShowAndroidToastMessage(string message)
+    public static void _ShowAndroidToastMessage(string message)
     {
         AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject unityActivity =
@@ -160,8 +100,8 @@ public class MainController : MonoBehaviour
         ListModel.SetActive(true);
         Debug.Log(ConnectRestApi.getRespone());
         string response = ConnectRestApi.getRespone();
-        JsonData assetAndTrees = JsonHelper.toJsonData(response);
-        Debug.Log(assetAndTrees["data"][0]["assetName"]);   
+        JsonData assetAndTrees = Helper.toJsonData(response);
+        ShowData(assetAndTrees);
     }
 
     public void quitList()
@@ -169,5 +109,35 @@ public class MainController : MonoBehaviour
         ButtonArea.SetActive(true);
         ListModel.SetActive(false);
     }
+
+    private void ShowData(JsonData data)
+    {
+        
+        {
+            for (int i = 0; i < data["data"].Count; i++)
+            {
+                string item = data["data"][i]["assetName"].GetString();
+                item = item.Replace(" ", "");
+                string returnValue = item;
+                item = "list/" + item;
+                GameObject spawnedGameObject = Resources.Load(item) as GameObject;
+                GameObject child = Instantiate<GameObject>(spawnedGameObject, new Vector3(0, 0, 0), Quaternion.identity);
+                child.transform.SetParent(List.transform);
+                child.transform.localScale = new Vector3(1, 1, 1);
+                var button = child.GetComponent<Button>();
+                button.onClick.AddListener(() => GetButtonValue(returnValue));
+            }
+        } 
+    }
+
+    private void GetButtonValue(string input)
+    {
+        ModelGenerator.id = input;
+        GameObject model = Resources.Load("object/" + input) as GameObject;
+        Debug.Log(model);
+        ModelGenerator.modelList[input] = model;
+        ModelGenerator.id = input;
+        quitList();
+    }               
 
 }

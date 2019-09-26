@@ -153,7 +153,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
         {
             DragGestureRecognizer.Update();
             PinchGestureRecognizer.Update();
-            TwoFingerDragGestureRecognizer.Update();
+            //TwoFingerDragGestureRecognizer.Update();
             TapGestureRecognizer.Update();
             TwistGestureRecognizer.Update();
         }
