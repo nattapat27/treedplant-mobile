@@ -52,7 +52,7 @@ public class ModelGenerator : Manipulator
             }
             else
             {
-                if (EventSystem.current.IsPointerOverGameObject() || EventSystem.current.currentSelectedGameObject != null)
+                if (EventSystem.current.IsPointerOverGameObject())
                     return;
                 mainController._ShowAndroidToastMessage(modelList[id].ToString());
                 // Instantiate Andy model at the hit pose.

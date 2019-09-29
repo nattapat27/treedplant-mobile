@@ -26,10 +26,6 @@ public class mainController : MonoBehaviour
 
     public void Update()
     {
-        if(!status && ConnectRestApi.getRespone()!= null)
-        {
-            status = true;
-        }
         _UpdateApplicationLifecycle();
     }
 
@@ -98,10 +94,13 @@ public class mainController : MonoBehaviour
     {
         ButtonArea.SetActive(false);
         ListModel.SetActive(true);
-        Debug.Log(ConnectRestApi.getRespone());
-        string response = ConnectRestApi.getRespone();
-        JsonData assetAndTrees = Helper.toJsonData(response);
-        ShowData(assetAndTrees);
+        if (!status)
+        {
+            string response = ConnectRestApi.getRespone();
+            JsonData assetAndTrees = Helper.toJsonData(response);
+            ShowData(assetAndTrees);
+            status = true;
+        }
     }
 
     public void quitList()
