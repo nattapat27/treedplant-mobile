@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 using System;
 using LitJson;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class mainController : MonoBehaviour
 {
@@ -98,6 +99,8 @@ public class mainController : MonoBehaviour
         {
             string response = ConnectRestApi.getRespone();
             JsonData assetAndTrees = Helper.toJsonData(response);
+            Debug.Log(response);
+            
             ShowData(assetAndTrees);
             status = true;
         }
@@ -124,19 +127,23 @@ public class mainController : MonoBehaviour
                 child.transform.SetParent(List.transform);
                 child.transform.localScale = new Vector3(1, 1, 1);
                 var button = child.GetComponent<Button>();
-                button.onClick.AddListener(() => GetButtonValue(returnValue));
+                button.onClick.AddListener(() => GetButtonValue(returnValue, i));
             }
         } 
     }
 
-    private void GetButtonValue(string input)
+    private void GetButtonValue(string input, int id)
     {
-        ModelGenerator.id = input;
         GameObject model = Resources.Load("object/" + input) as GameObject;
         Debug.Log(model);
         ModelGenerator.modelList[input] = model;
         ModelGenerator.id = input;
+        ModelGenerator.Index = id;
         quitList();
     }               
 
+    public void GoToCart()
+    {
+        SceneManager.LoadScene("Cart", LoadSceneMode.Single);
+    }
 }

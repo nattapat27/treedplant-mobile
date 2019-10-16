@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ModelGenerator : Manipulator
 {
@@ -12,7 +13,8 @@ public class ModelGenerator : Manipulator
     public GameObject ui;
     public static string id = "1";
     public static Dictionary<string, GameObject> modelList = new Dictionary<string, GameObject>();
-
+    private static Dictionary<string, Cart> cart = new Dictionary<string, Cart>();
+    public static int Index;
     protected override bool CanStartManipulationForGesture(TapGesture gesture)
     {
         if (gesture.TargetObject == null)
@@ -52,12 +54,24 @@ public class ModelGenerator : Manipulator
             }
             else
             {
-                if (EventSystem.current.IsPointerOverGameObject())
+                if (EventSystem.current.IsPointerOverGameObject() && 
+                    EventSystem.current.currentSelectedGameObject != null 
+                    )
                     return;
-                mainController._ShowAndroidToastMessage(modelList[id].ToString());
+                if (id.Equals("1"))
+                    return;
+
                 // Instantiate Andy model at the hit pose.
                 var andyObject = Instantiate(modelList[id], hit.Pose.position, hit.Pose.rotation);
 
+                if (!cart.ContainsKey(id))
+                {
+                    Debug.Log("in if");
+                    Cart temp  = new Cart(Index, id, 0);                    
+                    cart[id] = temp;
+                }
+                cart[id].SetNumber(cart[id].GetNumber() + 1);
+                
                 // Instantiate manipulator.
                 var manipulator =
                     Instantiate(ManipulatorPrefab, hit.Pose.position, hit.Pose.rotation);
@@ -74,5 +88,9 @@ public class ModelGenerator : Manipulator
                 manipulator.GetComponent<Manipulator>().Select();
             }
         }
+    }
+    public static Dictionary<string, Cart> GetCart()
+    {
+        return cart;
     }
 }
