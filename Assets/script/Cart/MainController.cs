@@ -19,9 +19,9 @@ public class MainController : MonoBehaviour
     {
         data = Helper.toJsonData(ConnectRestApi.getRespone());
         items = ModelGenerator.GetCart();
-        // List<Cart> carts = items.Values.ToList<Cart>();
-        List<Cart> carts = new List<Cart>();
-        carts.Add(new Cart(0, "FlamingoFlower", 5));
+        
+        List<Cart> carts = items.Values.ToList<Cart>();
+        
         foreach (Cart cart in carts)
         {
             string objectCart = "Cart/"+cart.GetName();
