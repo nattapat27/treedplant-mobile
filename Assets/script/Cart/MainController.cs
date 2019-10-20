@@ -40,7 +40,7 @@ public class MainController : MonoBehaviour
 
     public void BackToDesign()
     {
-        SceneManager.LoadScene("main");
+        SceneManager.LoadScene("main", LoadSceneMode.Single);
 
     }
 
