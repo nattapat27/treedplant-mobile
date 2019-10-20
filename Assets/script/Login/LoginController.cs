@@ -9,6 +9,7 @@ public class LoginController : MonoBehaviour
 {
     public GameObject InputText;
     public GameObject Popup;
+    private User user;
     void Awake()
     {
         if (!FB.IsInitialized)
@@ -23,6 +24,7 @@ public class LoginController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        user = new User();
         Popup.SetActive(false);
     }
 
@@ -69,6 +71,7 @@ public class LoginController : MonoBehaviour
             var aToken = AccessToken.CurrentAccessToken;
             // Print current access token's User ID
             Debug.Log("id: "+aToken.UserId);
+            user.Id = aToken.UserId;
             // Print current access token's granted permissions
             FB.API("/me?fields=name", HttpMethod.GET, DisplayUsername);
             FB.API("/me?fields=email", HttpMethod.GET, DisplayEmail);
@@ -86,6 +89,7 @@ public class LoginController : MonoBehaviour
             return;
         }
         Debug.Log(result.ResultDictionary["name"]);
+        user.Name = result.ResultDictionary["name"].ToString();
     }
     private void DisplayEmail(IGraphResult result)
     {
@@ -94,6 +98,7 @@ public class LoginController : MonoBehaviour
             return;
         }
         Debug.Log(result.ResultDictionary["email"]);
+        user.Email = result.ResultDictionary["email"].ToString();
     }
     private void ShowPopup()
     {
@@ -103,6 +108,12 @@ public class LoginController : MonoBehaviour
     {
         var text = InputText.GetComponent<Text>();
         Debug.Log(text.text);
+        user.Phone = text.text.ToString();
+        Debug.Log(user.Id);
+        Debug.Log(user.Name);
+        Debug.Log(user.Email);
+        Debug.Log(user.Phone);
+        SessionApp.user = user;
         SceneManager.LoadScene("main", LoadSceneMode.Single);
     }
 }
