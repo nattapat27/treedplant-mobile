@@ -86,6 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8889095284523932417}
+  - component: {fileID: 3087669120604442284}
   m_Layer: 0
   m_Name: FlamingoFlower
   m_TagString: Untagged
@@ -108,3 +109,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &3087669120604442284
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6047528461000416382}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.12418695
+  m_Height: 0.49591756
+  m_Direction: 1
+  m_Center: {x: 0.00951153, y: 0.19972813, z: 0.10683994}

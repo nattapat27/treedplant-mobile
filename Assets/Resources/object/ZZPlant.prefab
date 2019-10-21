@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4424981561648086872}
+  - component: {fileID: 893512868302693827}
   m_Layer: 0
   m_Name: ZZPlant
   m_TagString: Untagged
@@ -31,6 +32,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &893512868302693827
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837861912859040539}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.08022156
+  m_Height: 0.50792193
+  m_Direction: 1
+  m_Center: {x: 0.0048410594, y: 0.24603903, z: 0}
 --- !u!1 &3823927737317302718
 GameObject:
   m_ObjectHideFlags: 0

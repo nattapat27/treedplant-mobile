@@ -86,6 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2030483391034481098}
+  - component: {fileID: 4085083241255977398}
   m_Layer: 0
   m_Name: RubberPlant
   m_TagString: Untagged
@@ -108,3 +109,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &4085083241255977398
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4508093421806526014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.0836128
+  m_Height: 0.75010526
+  m_Direction: 1
+  m_Center: {x: 0.031057537, y: 0.6377707, z: -0.2632419}
