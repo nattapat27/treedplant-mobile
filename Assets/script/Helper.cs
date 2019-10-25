@@ -22,6 +22,20 @@ public class Helper : MonoBehaviour
         JsonData list = JsonMapper.ToObject(newJson);
         return list;
     }
+    public static GameObject GetChildWithName(GameObject obj, string name)
+    {
+        Transform trans = obj.transform;
+        Transform childTrans = trans.Find(name);
+        if (childTrans != null)
+        {
+            return childTrans.gameObject;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
 }
 
 public static class TextureExtentions

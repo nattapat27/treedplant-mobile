@@ -144,6 +144,10 @@ public class mainController : MonoBehaviour
 
     public void GoToCart()
     {
+        if(ModelGenerator.GetCart().Count == 0)
+        {
+            ModelGenerator.GetCart().Add("FlamingoFlower", new Cart(1, "FlamingoFlower", 5));
+        }
         SceneManager.LoadScene("Cart", LoadSceneMode.Single);
     }
 }
