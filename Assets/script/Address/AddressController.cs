@@ -42,7 +42,16 @@ public class AddressController : MonoBehaviour
         address.Province = Province.GetComponent<Text>().text.ToString();
         address.District = District.GetComponent<Text>().text.ToString();
         address.Detail = temp;
-        SceneManager.LoadScene("summary product", LoadSceneMode.Single);
+        User user = SessionApp.user;
+        user.Name = Name.GetComponent<Text>().text.ToString();
+        user.Phone = Phone.GetComponent<Text>().text.ToString();
+        
+        SessionApp.address = address;
+        
+        SceneManager.LoadScene("summary product", LoadSceneMode.Additive);
     }
-
+    public void Back()
+    {
+        SceneManager.UnloadScene("add address");
+    }
 }

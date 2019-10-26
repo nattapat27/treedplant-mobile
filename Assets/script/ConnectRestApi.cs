@@ -7,6 +7,7 @@ public class ConnectRestApi : MonoBehaviour
 {
     private static string URL = "https://treedp.doge.in.th";
     private static string response;
+    private static string postResponse;
     public static IEnumerator sendGetMethod(string option)
     {
         string request = URL + option;
@@ -27,6 +28,28 @@ public class ConnectRestApi : MonoBehaviour
             }
         }
     }
+
+    public static IEnumerator sendPostMethod(string option, string data)
+    {
+        string request = URL + option;
+
+        using (UnityWebRequest www = UnityWebRequest.Post(request, data))
+        {
+            yield return www.SendWebRequest();
+            if (www.isNetworkError || www.isHttpError)
+            {
+                Debug.Log(www.error);
+            }
+            else
+            {
+                if (www.isDone)
+                {
+                    response = www.downloadHandler.text;
+                }
+            }
+        }
+    }
+
     public static string getRespone()
     {
         return response;
@@ -36,4 +59,5 @@ public class ConnectRestApi : MonoBehaviour
         while(true)
             yield return new WaitForSeconds(waitTime);
     }
+
 }
