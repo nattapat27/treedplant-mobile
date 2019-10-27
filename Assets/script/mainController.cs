@@ -14,7 +14,7 @@ public class mainController : MonoBehaviour
     public GameObject ButtonArea;
     public GameObject ListModel;
     public GameObject List;
-
+    
     private ModelListButton prefab;
     private bool m_IsQuitting = false;
     private bool status = false;
@@ -111,42 +111,45 @@ public class mainController : MonoBehaviour
         ButtonArea.SetActive(true);
         ListModel.SetActive(false);
     }
-
     private void ShowData(JsonData data)
     {
-        
+        for (int i = 0; i < data["data"].Count; i++)
         {
-            for (int i = 0; i < data["data"].Count; i++)
+            string item = data["data"][i]["assetName"].GetString();
+            item = item.Replace(" ", "");
+            string returnValue = item;
+            item = "list/" + item;
+            GameObject spawnedGameObject = Resources.Load(item) as GameObject;
+            GameObject child = Instantiate<GameObject>(spawnedGameObject, new Vector3(0, 0, 0), Quaternion.identity);
+            child.transform.SetParent(List.transform);
+            child.transform.localScale = new Vector3(1, 1, 1);
+            var button = child.GetComponent<Button>();
+            button.onClick.AddListener(() => GetButtonValue(returnValue, i));
+            Debug.Log(i + ": "+ returnValue);
+            if (!SessionApp.index.ContainsKey(returnValue))
             {
-                string item = data["data"][i]["assetName"].GetString();
-                item = item.Replace(" ", "");
-                string returnValue = item;
-                item = "list/" + item;
-                GameObject spawnedGameObject = Resources.Load(item) as GameObject;
-                GameObject child = Instantiate<GameObject>(spawnedGameObject, new Vector3(0, 0, 0), Quaternion.identity);
-                child.transform.SetParent(List.transform);
-                child.transform.localScale = new Vector3(1, 1, 1);
-                var button = child.GetComponent<Button>();
-                button.onClick.AddListener(() => GetButtonValue(returnValue, i));
+                SessionApp.index[returnValue] = i;
             }
-        } 
+        }
     }
 
     private void GetButtonValue(string input, int id)
     {
+        Debug.Log(SessionApp.index[input]);
         GameObject model = Resources.Load("object/" + input) as GameObject;
         Debug.Log(model);
         ModelGenerator.modelList[input] = model;
         ModelGenerator.id = input;
-        ModelGenerator.Index = id;
+        ModelGenerator.Index = SessionApp.index[input];
+        Debug.Log(ModelGenerator.Index);
         quitList();
     }               
 
     public void GoToCart()
     {
-        if(ModelGenerator.GetCart().Count == 0)
+        if(ModelGenerator.GetCart().Count == 0)//1: Dracaena
         {
-            ModelGenerator.GetCart().Add("FlamingoFlower", new Cart(1, "FlamingoFlower", 5));
+            ModelGenerator.GetCart().Add("Dracaena", new Cart(1, "Dracaena", 5));
         }
         SceneManager.LoadScene("Cart", LoadSceneMode.Single);
     }

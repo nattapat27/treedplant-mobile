@@ -71,6 +71,7 @@ public class ModelGenerator : Manipulator
                     cart[id] = temp;
                 }
                 cart[id].SetNumber(cart[id].GetNumber() + 1);
+                Debug.Log(id);
                 
                 // Instantiate manipulator.
                 var manipulator =

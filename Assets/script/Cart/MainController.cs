@@ -18,6 +18,7 @@ public class MainController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(ConnectRestApi.getRespone());
         data = Helper.toJsonData(ConnectRestApi.getRespone());
         items = ModelGenerator.GetCart();
         int totalPrice = 0;
@@ -25,16 +26,21 @@ public class MainController : MonoBehaviour
         Debug.Log(carts);
         foreach (Cart cart in carts)
         {
-            Debug.Log(cart);
+            Debug.Log(cart.GetName());
+
+
             string objectCart = "Cart/"+cart.GetName();
             GameObject spawnedGameObject = Resources.Load(objectCart) as GameObject;
             int number = Convert.ToInt32(cart.GetNumber());
-            Debug.Log(number);
             GameObject Number = Helper.GetChildWithName(spawnedGameObject, "Number");
             Number.GetComponent<Text>().text = number.ToString();
-            int price = Convert.ToInt32(data["data"][Convert.ToInt32(cart.GetId().ToString())]["price"].ToString());
+            Debug.Log("index "+ cart.GetId());
+
+            int price = Convert.ToInt32(data["data"][cart.GetId()]["price"].ToString());            
             GameObject Price = Helper.GetChildWithName(spawnedGameObject, "Price");
             Price.GetComponent<Text>().text = (price * number).ToString();
+            Debug.Log("price");
+
             var obj = Instantiate(spawnedGameObject, new Vector3(0,0,0), Quaternion.identity);
             obj.transform.SetParent(Content.transform);
             totalPrice += price * number;
