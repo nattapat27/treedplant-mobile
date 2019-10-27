@@ -47,11 +47,20 @@ public class AddressController : MonoBehaviour
         user.Phone = Phone.GetComponent<Text>().text.ToString();
         
         SessionApp.address = address;
-        
+        GoNext();
+    }
+    private void GoNext()
+    {
+        if (SessionApp.address.Detail.Equals("") ||
+            SessionApp.address.District.Equals("") ||
+            SessionApp.address.Province.Equals("") ||
+            SessionApp.address.Zipcode.Equals(""))
+            return;
         SceneManager.LoadScene("summary product", LoadSceneMode.Additive);
     }
+
     public void Back()
-    {
+    {       
         SceneManager.UnloadScene("add address");
     }
 }

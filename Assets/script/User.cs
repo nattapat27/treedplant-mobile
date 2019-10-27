@@ -7,6 +7,7 @@ public class User
     private string _name;
     private string _email;
     private string _phone;
+    private string _password;
     public string Id
     {
         get
@@ -16,6 +17,17 @@ public class User
         set
         {
             this._id = value;
+        }
+    }
+    public string Passwordd
+    {
+        get
+        {
+            return this._password;
+        }
+        set
+        {
+            this._password = value;
         }
     }
     public string Name

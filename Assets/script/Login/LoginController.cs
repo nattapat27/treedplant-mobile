@@ -4,12 +4,14 @@ using UnityEngine;
 using Facebook.Unity;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using CI.HttpClient;
 
 public class LoginController : MonoBehaviour
 {
     public GameObject InputText;
     public GameObject Popup;
     private User user;
+    private HttpClient client;
     void Awake()
     {
         if (!FB.IsInitialized)
@@ -24,6 +26,7 @@ public class LoginController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        client = new HttpClient();
         user = new User();
         Popup.SetActive(false);
     }
@@ -75,6 +78,7 @@ public class LoginController : MonoBehaviour
             // Print current access token's granted permissions
             FB.API("/me?fields=name", HttpMethod.GET, DisplayUsername);
             FB.API("/me?fields=email", HttpMethod.GET, DisplayEmail);
+            
             ShowPopup();
         }
         else
@@ -102,6 +106,7 @@ public class LoginController : MonoBehaviour
     }
     private void ShowPopup()
     {
+
         Popup.SetActive(true);
     }
     public void SubmitLogin()
@@ -114,6 +119,13 @@ public class LoginController : MonoBehaviour
         Debug.Log(user.Email);
         Debug.Log(user.Phone);
         SessionApp.user = user;
+
+        UploadData();
+
         SceneManager.LoadScene("main", LoadSceneMode.Single);
+    }
+    private void UploadData()
+    {
+        //client.Post(new System.Uri("https://treedp.doge.in.th/save/token"),
     }
 }
