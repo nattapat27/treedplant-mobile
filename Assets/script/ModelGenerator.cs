@@ -15,6 +15,7 @@ public class ModelGenerator : Manipulator
     public static Dictionary<string, GameObject> modelList = new Dictionary<string, GameObject>();
     private static Dictionary<string, Cart> cart = new Dictionary<string, Cart>();
     public static int Index;
+    
     protected override bool CanStartManipulationForGesture(TapGesture gesture)
     {
         if (gesture.TargetObject == null)
@@ -66,13 +67,11 @@ public class ModelGenerator : Manipulator
 
                 if (!cart.ContainsKey(id))
                 {
-                    Debug.Log("in if");
                     Cart temp  = new Cart(Index, id, 0);                    
                     cart[id] = temp;
                 }
                 cart[id].SetNumber(cart[id].GetNumber() + 1);
-                Debug.Log(id);
-                
+
                 // Instantiate manipulator.
                 var manipulator =
                     Instantiate(ManipulatorPrefab, hit.Pose.position, hit.Pose.rotation);
@@ -87,6 +86,7 @@ public class ModelGenerator : Manipulator
 
                 // Select the placed object.
                 manipulator.GetComponent<Manipulator>().Select();
+
             }
         }
     }

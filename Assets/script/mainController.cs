@@ -8,6 +8,7 @@ using System;
 using LitJson;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using GoogleARCore.Examples.ObjectManipulation;
 
 public class mainController : MonoBehaviour
 {
@@ -135,22 +136,22 @@ public class mainController : MonoBehaviour
 
     private void GetButtonValue(string input, int id)
     {
-        Debug.Log(SessionApp.index[input]);
         GameObject model = Resources.Load("object/" + input) as GameObject;
-        Debug.Log(model);
         ModelGenerator.modelList[input] = model;
         ModelGenerator.id = input;
         ModelGenerator.Index = SessionApp.index[input];
-        Debug.Log(ModelGenerator.Index);
         quitList();
     }               
 
     public void GoToCart()
     {
-        if(ModelGenerator.GetCart().Count == 0)//1: Dracaena
-        {
-            ModelGenerator.GetCart().Add("Dracaena", new Cart(1, "Dracaena", 5));
-        }
         SceneManager.LoadScene("Cart", LoadSceneMode.Single);
     }
+
+    public void DelectModel()
+    {
+        GameObject obj = ManipulationSystem.Instance.SelectedObject;
+        Destroy(obj);
+    }
+
 }
