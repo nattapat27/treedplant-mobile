@@ -151,7 +151,18 @@ public class mainController : MonoBehaviour
     public void DelectModel()
     {
         GameObject obj = ManipulationSystem.Instance.SelectedObject;
-        Destroy(obj);
+        Debug.Log(obj.tag);
+        if (obj != null)
+        {
+            GameObject[] objects = obj.GetComponentsInChildren<GameObject>();
+            
+            foreach (GameObject temp in objects)
+            {
+                Debug.Log(temp);
+            }
+            Debug.Log("End");
+            Destroy(obj);
+        }
     }
 
 }

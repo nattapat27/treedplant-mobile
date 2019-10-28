@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4298659855683856597}
   m_Layer: 0
   m_Name: DumbCare
-  m_TagString: Untagged
+  m_TagString: DumbCare
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

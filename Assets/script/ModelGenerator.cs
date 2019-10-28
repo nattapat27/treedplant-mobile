@@ -87,6 +87,8 @@ public class ModelGenerator : Manipulator
                 // Select the placed object.
                 manipulator.GetComponent<Manipulator>().Select();
 
+                manipulator.tag = andyObject.tag;
+
             }
         }
     }

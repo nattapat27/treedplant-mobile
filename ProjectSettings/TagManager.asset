@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ManipulationSystem
+  - Dracaena
+  - DumbCare
+  - FlamingoFlower
+  - Goldenpothos
+  - RubberPlant
+  - SnakePlant
+  - SpiderPlant
+  - ZZPlant
   layers:
   - Default
   - TransparentFX
