@@ -151,16 +151,14 @@ public class mainController : MonoBehaviour
     public void DelectModel()
     {
         GameObject obj = ManipulationSystem.Instance.SelectedObject;
-        Debug.Log(obj.tag);
         if (obj != null)
         {
-            GameObject[] objects = obj.GetComponentsInChildren<GameObject>();
-            
-            foreach (GameObject temp in objects)
-            {
-                Debug.Log(temp);
-            }
-            Debug.Log("End");
+            var cart = ModelGenerator.GetCart();
+            int number = cart[obj.tag.ToString()].GetNumber();
+            if (number - 1 <= 0)
+                cart.Remove(obj.tag.ToString());
+            else
+                cart[obj.tag.ToString()].SetNumber(number - 1);
             Destroy(obj);
         }
     }
