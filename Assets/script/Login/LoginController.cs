@@ -4,14 +4,17 @@ using UnityEngine;
 using Facebook.Unity;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using CI.HttpClient;
+using LitJson;
+
+using UnityEngine.Networking;
 
 public class LoginController : MonoBehaviour
 {
     public GameObject InputText;
     public GameObject Popup;
+    public GameObject Loading;
     private User user;
-    private HttpClient client;
+    private readonly string basePath = "https://treedp.doge.in.th";
     void Awake()
     {
         if (!FB.IsInitialized)
@@ -26,9 +29,9 @@ public class LoginController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        client = new HttpClient();
         user = new User();
         Popup.SetActive(false);
+        Loading.SetActive(false);
     }
 
     // Update is called once per frame
@@ -78,8 +81,7 @@ public class LoginController : MonoBehaviour
             // Print current access token's granted permissions
             FB.API("/me?fields=name", HttpMethod.GET, DisplayUsername);
             FB.API("/me?fields=email", HttpMethod.GET, DisplayEmail);
-            
-            ShowPopup();
+            StartCoroutine(PostRequest("https://treedp.doge.in.th/searchByFacebook", "{ \"facebook\" : \""+user.Id+"\" }"));
         }
         else
         {
@@ -119,13 +121,50 @@ public class LoginController : MonoBehaviour
         Debug.Log(user.Email);
         Debug.Log(user.Phone);
         SessionApp.user = user;
+        string requestData = "{" +
+            " \"name\" : \"" + user.Name + "\"," +
+            " \"phone\" : \"" + user.Phone + "\"," +
+            " \"email\" : \"" + user.Email + "\"," +
+            " \"facebook\" : \"" + user.Id + "\"," +
+            " \"password\" : \"1234567890\"" +
+            "}";
+        Debug.Log(requestData);
+        StartCoroutine(AddNewUser("https://treedp.doge.in.th/save/token", requestData));
+    }   
 
-        UploadData();
 
-        SceneManager.LoadScene("main", LoadSceneMode.Single);
-    }
-    private void UploadData()
+    IEnumerator PostRequest(string url, string bodyJsonString)
     {
-        //client.Post(new System.Uri("https://treedp.doge.in.th/save/token"),
+        var request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = new System.Text.UTF8Encoding().GetBytes(bodyJsonString);
+        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        Loading.SetActive(true);
+        yield return request.Send();
+        Loading.SetActive(false);
+        string respone = request.downloadHandler.text;
+        if(respone.Equals("[]"))
+            ShowPopup();
+        else
+        {   
+            SessionApp.userId = Helper.toJsonData(respone)["data"][0]["profileId"].ToString(); 
+            SceneManager.LoadScene("main", LoadSceneMode.Single);
+        }
+    }
+    IEnumerator AddNewUser(string url, string bodyJsonString)
+    {
+        var request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = new System.Text.UTF8Encoding().GetBytes(bodyJsonString);
+        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        Loading.SetActive(true);
+        yield return request.Send();
+        Loading.SetActive(false);
+        string respone = request.downloadHandler.text;
+        Debug.Log(respone);
+        SessionApp.userId = JsonMapper.ToObject(respone)["profileId"].ToString();
+        SceneManager.LoadScene("main", LoadSceneMode.Single);
     }
 }
