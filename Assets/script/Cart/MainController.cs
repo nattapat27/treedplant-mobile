@@ -95,12 +95,15 @@ public class MainController : MonoBehaviour
         
         yield return request.Send();
 
-        if(i >= count-1)
-            Loading.SetActive(false);
-
         string respone = request.downloadHandler.text;
         Debug.Log(respone);
         SessionApp.cartId.Add(JsonMapper.ToObject(respone)["cartId"].ToString());
-        SceneManager.LoadScene("add address", LoadSceneMode.Additive);
+        
+        if (i >= count - 1)
+        {
+            Loading.SetActive(false);
+            SceneManager.LoadScene("add address", LoadSceneMode.Additive);
+        }
+
     }
 }
