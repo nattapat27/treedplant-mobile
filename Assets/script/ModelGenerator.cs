@@ -15,6 +15,7 @@ public class ModelGenerator : Manipulator
     public static Dictionary<string, GameObject> modelList = new Dictionary<string, GameObject>();
     private static Dictionary<string, Cart> cart = new Dictionary<string, Cart>();
     public static int Index;
+    public static string AssetId;
     
     protected override bool CanStartManipulationForGesture(TapGesture gesture)
     {
@@ -67,7 +68,7 @@ public class ModelGenerator : Manipulator
 
                 if (!cart.ContainsKey(id))
                 {
-                    Cart temp  = new Cart(Index, id, 0);                    
+                    Cart temp  = new Cart(Index, id, 0, AssetId);                    
                     cart[id] = temp;
                 }
                 cart[id].SetNumber(cart[id].GetNumber() + 1);

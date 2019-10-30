@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -12,12 +13,14 @@ public class MainController : MonoBehaviour
     public GameObject Content;
     public GameObject TextPrice;
     public GameObject TextTotalPrice;
+    public GameObject Loading;
     private JsonData data;
     private Dictionary<string, Cart> items;
     
     // Start is called before the first frame update
     void Start()
     {
+        Loading.SetActive(false);
         Debug.Log(ConnectRestApi.getRespone());
         data = Helper.toJsonData(ConnectRestApi.getRespone());
         items = ModelGenerator.GetCart();
@@ -64,6 +67,40 @@ public class MainController : MonoBehaviour
 
     public void GoToAddress()
     {
+        List<Cart> carts = items.Values.ToList<Cart>();
+        if(carts.Count != 0)
+        {
+            for (int i = 0; i < carts.Count; i++)
+            {
+                string requestBody = "{" +
+                " \"amount\" : \"" + carts[i].GetNumber() + "\"," +
+                " \"assetID\" : \"" + carts[i].GetAssetId() + "\"," +
+                " \"profileId\" : \"" + SessionApp.userId + "\"" +
+                "}";
+                StartCoroutine(AddToCart("https://treedp.doge.in.th/cart/save", requestBody, i, carts.Count));
+            }
+        }
+        //SceneManager.LoadScene("add address", LoadSceneMode.Additive);
+    }
+
+    IEnumerator AddToCart(string url, string bodyJsonString, int i, int count)
+    {
+        var request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = new System.Text.UTF8Encoding().GetBytes(bodyJsonString);
+        request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+        if(i == 0)
+            Loading.SetActive(true);
+        
+        yield return request.Send();
+
+        if(i >= count-1)
+            Loading.SetActive(false);
+
+        string respone = request.downloadHandler.text;
+        Debug.Log(respone);
+        SessionApp.cartId.Add(JsonMapper.ToObject(respone)["cartId"].ToString());
         SceneManager.LoadScene("add address", LoadSceneMode.Additive);
     }
 }

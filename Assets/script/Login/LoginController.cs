@@ -147,8 +147,13 @@ public class LoginController : MonoBehaviour
         if(respone.Equals("[]"))
             ShowPopup();
         else
-        {   
-            SessionApp.userId = Helper.toJsonData(respone)["data"][0]["profileId"].ToString(); 
+        {
+            Debug.Log(respone);
+            SessionApp.userId = Helper.toJsonData(respone)["data"][0]["profileId"].ToString();
+            SessionApp.user.Name = Helper.toJsonData(respone)["data"][0]["name"].ToString();
+            SessionApp.user.Phone = Helper.toJsonData(respone)["data"][0]["phoneNumber"].ToString();
+            SessionApp.user.Email = Helper.toJsonData(respone)["data"][0]["email"].ToString();
+            SessionApp.user.Id = Helper.toJsonData(respone)["data"][0]["facebook"].ToString();
             SceneManager.LoadScene("main", LoadSceneMode.Single);
         }
     }

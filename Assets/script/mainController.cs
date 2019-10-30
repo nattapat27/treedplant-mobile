@@ -117,6 +117,7 @@ public class mainController : MonoBehaviour
         for (int i = 0; i < data["data"].Count; i++)
         {
             string item = data["data"][i]["assetName"].GetString();
+            string assetId = data["data"][i]["assetId"].ToString();
             item = item.Replace(" ", "");
             string returnValue = item;
             item = "list/" + item;
@@ -125,7 +126,7 @@ public class mainController : MonoBehaviour
             child.transform.SetParent(List.transform);
             child.transform.localScale = new Vector3(1, 1, 1);
             var button = child.GetComponent<Button>();
-            button.onClick.AddListener(() => GetButtonValue(returnValue, i));
+            button.onClick.AddListener(() => GetButtonValue(returnValue, assetId));
             Debug.Log(i + ": "+ returnValue);
             if (!SessionApp.index.ContainsKey(returnValue))
             {
@@ -134,12 +135,14 @@ public class mainController : MonoBehaviour
         }
     }
 
-    private void GetButtonValue(string input, int id)
+    private void GetButtonValue(string input, string assetId)
     {
         GameObject model = Resources.Load("object/" + input) as GameObject;
         ModelGenerator.modelList[input] = model;
         ModelGenerator.id = input;
         ModelGenerator.Index = SessionApp.index[input];
+        ModelGenerator.AssetId = assetId;
+        Debug.Log(ModelGenerator.AssetId);
         quitList();
     }               
 

@@ -56,11 +56,13 @@ public class Cart
     private int id;
     private string name;
     private int number;
-    public Cart(int id, string name, int number)
+    private string assetId;
+    public Cart(int id, string name, int number, string assetId)
     {
         this.id = id;
         this.name = name;
         this.number = number;
+        this.assetId = assetId;
     }
     public void SetId(int id)
     {
@@ -74,7 +76,10 @@ public class Cart
     {
         this.number = number;
     }
-
+    public void SetAssetId(string assetId)
+    {
+        this.assetId = assetId;
+    }
     public int GetId()
     {
         return id;
@@ -86,6 +91,10 @@ public class Cart
     public int GetNumber()
     {
         return number;
+    }
+    public string GetAssetId()
+    {
+        return assetId;
     }
 
 }
