@@ -85,6 +85,7 @@ public class SummaryController : MonoBehaviour
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Accept-Encoding", "utf-8");
         Loading.SetActive(true);
         yield return request.Send();
         string respone = request.downloadHandler.text;
@@ -110,6 +111,7 @@ public class SummaryController : MonoBehaviour
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Accept-Encoding", "utf-8");
         yield return request.Send();
         Loading.SetActive(false);
         string respone = request.downloadHandler.text;

@@ -154,6 +154,7 @@ public class mainController : MonoBehaviour
     public void DelectModel()
     {
         GameObject obj = ManipulationSystem.Instance.SelectedObject;
+        Debug.Log(obj.tag);
         if (obj != null)
         {
             var cart = ModelGenerator.GetCart();

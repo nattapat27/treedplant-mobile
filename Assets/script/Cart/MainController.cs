@@ -90,7 +90,8 @@ public class MainController : MonoBehaviour
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
-        if(i == 0)
+        request.SetRequestHeader("Accept-Encoding", "utf-8");
+        if (i == 0)
             Loading.SetActive(true);
         
         yield return request.Send();

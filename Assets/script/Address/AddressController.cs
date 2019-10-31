@@ -81,6 +81,7 @@ public class AddressController : MonoBehaviour
         request.uploadHandler = (UploadHandler)new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
+        request.SetRequestHeader("Accept-Encoding", "utf-8");
         Loading.SetActive(true);
         yield return request.Send();
         Loading.SetActive(false);
