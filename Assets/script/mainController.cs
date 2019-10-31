@@ -21,6 +21,7 @@ public class mainController : MonoBehaviour
     private bool status = false;
     public void Start()
     {
+        ModelGenerator.cart = new Dictionary<string, Cart>();
         ButtonArea.SetActive(true);
         ListModel.SetActive(false);
         StartCoroutine(ConnectRestApi.sendGetMethod("/asset/getAllAsset/tree"));

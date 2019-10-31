@@ -13,6 +13,7 @@ TagManager:
   - SnakePlant
   - SpiderPlant
   - ZZPlant
+  - Dumbcare
   layers:
   - Default
   - TransparentFX

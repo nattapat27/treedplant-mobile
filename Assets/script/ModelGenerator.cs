@@ -13,7 +13,7 @@ public class ModelGenerator : Manipulator
     public GameObject ui;
     public static string id = "1";
     public static Dictionary<string, GameObject> modelList = new Dictionary<string, GameObject>();
-    private static Dictionary<string, Cart> cart = new Dictionary<string, Cart>();
+    public static Dictionary<string, Cart> cart = new Dictionary<string, Cart>();
     public static int Index;
     public static string AssetId;
     
@@ -71,6 +71,7 @@ public class ModelGenerator : Manipulator
                     Cart temp  = new Cart(Index, id, 0, AssetId);                    
                     cart[id] = temp;
                 }
+                Debug.Log(id);
                 cart[id].SetNumber(cart[id].GetNumber() + 1);
 
                 // Instantiate manipulator.
