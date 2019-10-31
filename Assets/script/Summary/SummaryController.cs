@@ -95,9 +95,10 @@ public class SummaryController : MonoBehaviour
         for(int i=0; i<carts.Count; i++)
         {
             string requestBody = "{" +
-                " \"cart\" : \"" + carts[i].GetAssetId() + "\"," +
+                " \"cart\" : \"" + SessionApp.cartId[i] + "\"," +
                 " \"order\" : \"" + orderId +"\"" +
                 "}";
+            Debug.Log(requestBody);
             StartCoroutine(EditCart("https://treedp.doge.in.th/add/orderId", requestBody, i, carts.Count));
         }
     }
