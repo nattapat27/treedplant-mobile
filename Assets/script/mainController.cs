@@ -18,7 +18,7 @@ public class mainController : MonoBehaviour
     
     private ModelListButton prefab;
     private bool m_IsQuitting = false;
-    private bool status = false;
+    private static bool status = false;
     public void Start()
     {
         ModelGenerator.cart = new Dictionary<string, Cart>();
@@ -97,14 +97,15 @@ public class mainController : MonoBehaviour
     {
         ButtonArea.SetActive(false);
         ListModel.SetActive(true);
+        Debug.Log(status);
         if (!status)
         {
+            status = true;
             string response = ConnectRestApi.getRespone();
             JsonData assetAndTrees = Helper.toJsonData(response);
             Debug.Log(response);
             
             ShowData(assetAndTrees);
-            status = true;
         }
     }
 
@@ -122,6 +123,7 @@ public class mainController : MonoBehaviour
             item = item.Replace(" ", "");
             string returnValue = item;
             item = "list/" + item;
+            Debug.Log(item);
             GameObject spawnedGameObject = Resources.Load(item) as GameObject;
             GameObject child = Instantiate<GameObject>(spawnedGameObject, new Vector3(0, 0, 0), Quaternion.identity);
             child.transform.SetParent(List.transform);
