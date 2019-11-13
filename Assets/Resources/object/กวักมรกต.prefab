@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4424981561648086872}
   - component: {fileID: 893512868302693827}
   m_Layer: 0
-  m_Name: ZZPlant
-  m_TagString: ZZPlant
+  m_Name: "\u0E01\u0E27\u0E31\u0E01\u0E21\u0E23\u0E01\u0E15"
+  m_TagString: "\u0E01\u0E27\u0E31\u0E01\u0E21\u0E23\u0E01\u0E15"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

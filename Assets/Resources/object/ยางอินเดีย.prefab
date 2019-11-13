@@ -88,8 +88,8 @@ GameObject:
   - component: {fileID: 2030483391034481098}
   - component: {fileID: 4085083241255977398}
   m_Layer: 0
-  m_Name: RubberPlant
-  m_TagString: RubberPlant
+  m_Name: "\u0E22\u0E32\u0E07\u0E2D\u0E34\u0E19\u0E40\u0E14\u0E35\u0E22"
+  m_TagString: "\u0E22\u0E32\u0E07\u0E2D\u0E34\u0E19\u0E40\u0E14\u0E35\u0E22"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

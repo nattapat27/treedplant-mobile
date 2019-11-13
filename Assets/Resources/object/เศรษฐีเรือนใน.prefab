@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8020373210690916442}
   - component: {fileID: 8915009589632313923}
   m_Layer: 0
-  m_Name: SpiderPlant
-  m_TagString: SpiderPlant
+  m_Name: "\u0E40\u0E28\u0E23\u0E29\u0E10\u0E35\u0E40\u0E23\u0E37\u0E2D\u0E19\u0E43\u0E19"
+  m_TagString: "\u0E40\u0E28\u0E23\u0E29\u0E10\u0E35\u0E40\u0E23\u0E37\u0E2D\u0E19\u0E43\u0E19"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

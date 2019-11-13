@@ -88,8 +88,8 @@ GameObject:
   - component: {fileID: 8889095284523932417}
   - component: {fileID: 3087669120604442284}
   m_Layer: 0
-  m_Name: FlamingoFlower
-  m_TagString: FlamingoFlower
+  m_Name: "\u0E2B\u0E19\u0E49\u0E32\u0E27\u0E31\u0E27\u0E43\u0E1A"
+  m_TagString: "\u0E2B\u0E19\u0E49\u0E32\u0E27\u0E31\u0E27\u0E43\u0E1A"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
