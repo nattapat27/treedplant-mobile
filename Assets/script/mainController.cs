@@ -21,6 +21,7 @@ public class mainController : MonoBehaviour
     private static bool status = false;
     public void Start()
     {
+        status = false;
         ModelGenerator.cart = new Dictionary<string, Cart>();
         ButtonArea.SetActive(true);
         ListModel.SetActive(false);
@@ -118,22 +119,29 @@ public class mainController : MonoBehaviour
     {
         for (int i = 0; i < data["data"].Count; i++)
         {
-            string item = data["data"][i]["assetName"].GetString();
-            string assetId = data["data"][i]["assetId"].ToString();
-            item = item.Replace(" ", "");
-            string returnValue = item;
-            item = "list/" + item;
-            Debug.Log(item);
-            GameObject spawnedGameObject = Resources.Load(item) as GameObject;
-            GameObject child = Instantiate<GameObject>(spawnedGameObject, new Vector3(0, 0, 0), Quaternion.identity);
-            child.transform.SetParent(List.transform);
-            child.transform.localScale = new Vector3(1, 1, 1);
-            var button = child.GetComponent<Button>();
-            button.onClick.AddListener(() => GetButtonValue(returnValue, assetId));
-            Debug.Log(i + ": "+ returnValue);
-            if (!SessionApp.index.ContainsKey(returnValue))
+            try
             {
-                SessionApp.index[returnValue] = i;
+                string item = data["data"][i]["assetName"].GetString();
+                string assetId = data["data"][i]["assetId"].ToString();
+                item = item.Replace(" ", "");
+                string returnValue = item;
+                item = "list/" + item;
+                Debug.Log(item);
+                GameObject spawnedGameObject = Resources.Load(item) as GameObject;
+                GameObject child = Instantiate<GameObject>(spawnedGameObject, new Vector3(0, 0, 0), Quaternion.identity);
+                child.transform.SetParent(List.transform);
+                child.transform.localScale = new Vector3(1, 1, 1);
+                var button = child.GetComponent<Button>();
+                button.onClick.AddListener(() => GetButtonValue(returnValue, assetId));
+                Debug.Log(i + ": " + returnValue);
+                if (!SessionApp.index.ContainsKey(returnValue))
+                {
+                    SessionApp.index[returnValue] = i;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex.Data);
             }
         }
     }

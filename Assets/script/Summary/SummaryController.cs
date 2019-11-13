@@ -16,6 +16,7 @@ public class SummaryController : MonoBehaviour
     public GameObject AddressShipping;
     public GameObject PriceInFooter;
     public GameObject Loading;
+    public GameObject Complete;
     private JsonData data;
     private Dictionary<string, Cart> items;
     private int totalPrice = 0;
@@ -24,6 +25,7 @@ public class SummaryController : MonoBehaviour
     void Start()
     {
         Loading.SetActive(false);
+        Complete.SetActive(false);
         data = Helper.toJsonData(ConnectRestApi.getRespone());
         items = ModelGenerator.GetCart();
         
@@ -119,8 +121,12 @@ public class SummaryController : MonoBehaviour
         if(i >= count - 1)
         {
             Loading.SetActive(false);
-            SceneManager.LoadScene("main", LoadSceneMode.Single);
+            Complete.SetActive(true);
         }
 
+    }
+    public void GoMain()
+    {
+        SceneManager.LoadScene("main", LoadSceneMode.Single);
     }
 }

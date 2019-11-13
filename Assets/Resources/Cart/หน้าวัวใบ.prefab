@@ -371,7 +371,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 20
-  m_Text: FlamingoFlower
+  m_Text: "\u0E2B\u0E19\u0E49\u0E32\u0E27\u0E31\u0E27\u0E43\u0E1A"
 --- !u!1 &7932760279634718776
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,7 +448,7 @@ GameObject:
   - component: {fileID: 7891922048905945947}
   - component: {fileID: 3648473663388742321}
   m_Layer: 5
-  m_Name: FlamingoFlower
+  m_Name: "\u0E2B\u0E19\u0E49\u0E32\u0E27\u0E31\u0E27\u0E43\u0E1A"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

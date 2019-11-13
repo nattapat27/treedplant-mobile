@@ -65,8 +65,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -131,8 +129,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &7912349913005128784
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,7 +141,7 @@ GameObject:
   - component: {fileID: 7912349913005128789}
   - component: {fileID: 2696035031719204723}
   m_Layer: 5
-  m_Name: DumbCare
+  m_Name: "\u0E2A\u0E32\u0E27\u0E19\u0E49\u0E2D\u0E22\u0E1B\u0E23\u0E30\u0E41\u0E1B\u0E49\u0E07"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,8 +228,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &7912349913855959064
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,8 +291,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 8f00abf53086ba8499b6f2cb44e63123, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -342,8 +334,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18, y: -172}
-  m_SizeDelta: {x: 280.5, y: 91.9}
+  m_AnchoredPosition: {x: 2, y: -172}
+  m_SizeDelta: {x: 336.4, y: 91.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9002195222188181995
 CanvasRenderer:
@@ -371,19 +363,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 3b90ce1dae4be43b193d3dec72314443, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 50
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: DumbCare
+  m_Text: "\u0E2A\u0E32\u0E27\u0E19\u0E49\u0E2D\u0E22\u0E1B\u0E23\u0E30\u0E41\u0E1B\u0E49\u0E07"
