@@ -115,7 +115,6 @@ public class SummaryController : MonoBehaviour
         request.SetRequestHeader("Content-Type", "application/json");
         request.SetRequestHeader("Accept-Encoding", "utf-8");
         yield return request.Send();
-        Loading.SetActive(false);
         string respone = request.downloadHandler.text;
         Debug.Log(respone);
         if(i >= count - 1)

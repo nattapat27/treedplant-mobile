@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System;
 
 public class AddressController : MonoBehaviour
 {
@@ -17,17 +18,17 @@ public class AddressController : MonoBehaviour
     public GameObject Province;
     public GameObject Zipcode;
     public GameObject Loading;
+    public GameObject Incomplete;
     // Start is called before the first frame update
     void Start()
     {
         Loading.SetActive(false);
-        Debug.Log("Start");
+        Incomplete.SetActive(false);
         if(SessionApp.user != null)
         {
             Name.GetComponent<Text>().text = SessionApp.user.Name;
             Phone.GetComponent<Text>().text = SessionApp.user.Phone;
         }
-        Debug.Log("Start");
     }
 
     // Update is called once per frame
@@ -38,19 +39,41 @@ public class AddressController : MonoBehaviour
     
     public void AddAddress()
     {
-        string temp = "";
-        temp += Address.GetComponent<Text>().text.ToString() + " ";
-        temp += Detail.GetComponent<Text>().text.ToString() + " ";
-        temp += Subdistrict.GetComponent<Text>().text.ToString();
-        SessionApp.address.Zipcode = Zipcode.GetComponent<Text>().text.ToString();
-        SessionApp.address.Province = Province.GetComponent<Text>().text.ToString();
-        SessionApp.address.District = District.GetComponent<Text>().text.ToString();
-        SessionApp.address.Detail = temp;
-        Debug.Log("address");
-        SessionApp.user.Name = Name.GetComponent<Text>().text.ToString();
-        SessionApp.user.Phone = Phone.GetComponent<Text>().text.ToString();
-        Debug.Log("user");
-        GoNext();
+        if( !(Address.GetComponent<Text>().text.Equals("") &&
+            Subdistrict.GetComponent<Text>().text.Equals("") &&
+            Zipcode.GetComponent<Text>().text.Equals("") &&
+            Province.GetComponent<Text>().text.Equals("") &&
+            District.GetComponent<Text>().text.Equals("") &&
+            Name.GetComponent<Text>().text.Equals("") &&
+            Phone.GetComponent<Text>().text.Equals(""))
+            )
+        {
+            string temp = "";
+            temp += Address.GetComponent<Text>().text.ToString() + " ";
+            try
+            {
+                temp += Detail.GetComponent<Text>().text.ToString() + " ";
+            }
+            catch (Exception ex)
+            {
+                Debug.Log(ex.Data);
+            }
+
+            temp += Subdistrict.GetComponent<Text>().text.ToString();
+            SessionApp.address.Zipcode = Zipcode.GetComponent<Text>().text.ToString();
+            SessionApp.address.Province = Province.GetComponent<Text>().text.ToString();
+            SessionApp.address.District = District.GetComponent<Text>().text.ToString();
+            SessionApp.address.Detail = temp;
+            Debug.Log("address");
+            SessionApp.user.Name = Name.GetComponent<Text>().text.ToString();
+            SessionApp.user.Phone = Phone.GetComponent<Text>().text.ToString();
+            Debug.Log("user");
+            GoNext();
+        }
+        else
+        {
+            Incomplete.SetActive(true);
+        }
     }
     private void GoNext()
     {
@@ -89,5 +112,9 @@ public class AddressController : MonoBehaviour
         Debug.Log(respones);
         SessionApp.addressId = JsonMapper.ToObject(respones)["addressId"].ToString();
         SceneManager.LoadScene("summary product", LoadSceneMode.Additive);
+    }
+    public void incomplete()
+    {
+        Incomplete.SetActive(false);
     }
 }

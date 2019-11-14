@@ -56,10 +56,12 @@ public class ModelGenerator : Manipulator
             }
             else
             {
-                if (EventSystem.current.IsPointerOverGameObject() && 
-                    EventSystem.current.currentSelectedGameObject != null 
-                    )
+                Debug.Log(EventSystem.current.currentSelectedGameObject.tag);
+                if (EventSystem.current.currentSelectedGameObject.tag.Equals("UI"))
+                {
                     return;
+                }
+                    
                 if (id.Equals("1"))
                     return;
 
