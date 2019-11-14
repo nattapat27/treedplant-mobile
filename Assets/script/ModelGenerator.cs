@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 public class ModelGenerator : Manipulator
 {
@@ -56,12 +57,22 @@ public class ModelGenerator : Manipulator
             }
             else
             {
-                Debug.Log(EventSystem.current.currentSelectedGameObject.tag);
-                if (EventSystem.current.currentSelectedGameObject.tag.Equals("UI"))
+                
+                try
                 {
-                    return;
+                    Debug.Log(EventSystem.current.currentSelectedGameObject.tag);
+                    if (EventSystem.current.currentSelectedGameObject.tag.Equals("UI"))
+                    {
+                        return;
+                    }
+
                 }
-                    
+                catch(Exception ex)
+                {
+                    Debug.Log(ex.Data);
+                }
+
+
                 if (id.Equals("1"))
                     return;
 
@@ -73,7 +84,6 @@ public class ModelGenerator : Manipulator
                     Cart temp  = new Cart(Index, id, 0, AssetId);                    
                     cart[id] = temp;
                 }
-                Debug.Log(id);
                 cart[id].SetNumber(cart[id].GetNumber() + 1);
 
                 // Instantiate manipulator.
